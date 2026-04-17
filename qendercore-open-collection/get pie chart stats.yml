@@ -1,0 +1,49 @@
+info:
+  name: get pie chart stats
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: https://api.qendercore.com:8000/v1/h/ds
+  headers:
+    - name: User-Agent
+      value: Mozilla/5.0 (X11; Linux x86_64; rv:149.0) Gecko/20100101 Firefox/149.0
+    - name: Accept
+      value: application/json
+    - name: Accept-Language
+      value: en-GB,en;q=0.9
+    - name: Accept-Encoding
+      value: gzip, deflate, br, zstd
+    - name: Referer
+      value: https://www.qendercore.com/
+    - name: Content-Type
+      value: application/json
+    - name: x-qc-client-seq
+      value: W.3.2
+    - name: Origin
+      value: https://www.qendercore.com
+    - name: Sec-GPC
+      value: "1"
+    - name: Connection
+      value: keep-alive
+    - name: Sec-Fetch-Dest
+      value: empty
+    - name: Sec-Fetch-Mode
+      value: cors
+    - name: Sec-Fetch-Site
+      value: same-site
+    - name: Priority
+      value: u=0
+  body:
+    type: json
+    data: '{"_ft":"hwm","hwid":"{{hwid}}","start":"2026-04-16","props":["inv.core.import_energy_delta_kwh","inv.core.export_energy_delta_kwh","inv.core.self_consumption_energy_delta_kwh"],"duration":"P1D","resolution":"total","tz":"local"}'
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
