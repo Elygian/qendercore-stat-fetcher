@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -19,8 +20,19 @@ except ImportError:  # pragma: no cover - optional dependency
 	load_dotenv = None
 
 
-DEFAULT_HWID = "1550edcc-f59f-11ee-8f61-60fb00ecafea"
 DEFAULT_CLIENT_SEQ = "W.3.2"
+HWID_PATTERN = re.compile(
+	"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+)
+HWID_CANDIDATE_KEYWORDS = (
+	"hwid",
+	"hardware_id",
+	"hardwareid",
+	"device_id",
+	"deviceid",
+	"gateway_id",
+	"gatewayid",
+)
 SANKEY_LABELS = {
 	"Solar Production Power (W)",
 	"Consumption Power (W)",
@@ -43,8 +55,7 @@ def parse_args() -> argparse.Namespace:
 	parser.add_argument("--password", help="Login password (or set PASSWORD env var).")
 	parser.add_argument(
 		"--hwid",
-		default=DEFAULT_HWID,
-		help=f"Hardware ID for data requests (default: {DEFAULT_HWID}).",
+		help="Optional hardware ID override for data requests (auto-discovered if omitted).",
 	)
 	parser.add_argument(
 		"--start-date",
@@ -183,6 +194,64 @@ def bearer_token(args: argparse.Namespace, headers: dict[str, str], username: st
 	return token
 
 
+def iter_identifier_candidates(payload: Any) -> list[str]:
+	candidates: list[str] = []
+
+	def _walk(node: Any) -> None:
+		if isinstance(node, dict):
+			for key, value in node.items():
+				lower_key = key.lower() if isinstance(key, str) else ""
+				if any(keyword in lower_key for keyword in HWID_CANDIDATE_KEYWORDS) and isinstance(value, str):
+					candidates.append(value.strip())
+				_walk(value)
+		elif isinstance(node, list):
+			for item in node:
+				_walk(item)
+
+	_walk(payload)
+	return candidates
+
+
+def extract_hwid(payload: Any) -> str | None:
+	for candidate in iter_identifier_candidates(payload):
+		if HWID_PATTERN.match(candidate):
+			return candidate
+	return None
+
+
+def discover_hwid(args: argparse.Namespace, authed_headers: dict[str, str]) -> tuple[str, str]:
+	if args.hwid:
+		return args.hwid, "manual-override"
+
+	attempts: list[str] = []
+	for name, url in (
+		("account_info", "https://api.qendercore.com:8000/v1/s/accountinfo"),
+		("dashboard_info", "https://api.qendercore.com:8000/v1/h/views/dashboard"),
+	):
+		status, response = run_curl_json(
+			url=url,
+			method="GET",
+			headers=authed_headers,
+			timeout=args.timeout,
+		)
+
+		hwid = extract_hwid(response)
+		if status == 200 and hwid:
+			return hwid, name
+
+		if status != 200:
+			attempts.append(f"{name}: HTTP {status}")
+		else:
+			attempts.append(f"{name}: HTTP 200 but no HWID-like field")
+
+	raise RuntimeError(
+		"Unable to discover HWID automatically. "
+		+ "Tried: "
+		+ "; ".join(attempts)
+		+ ". Provide --hwid as a manual override."
+	)
+
+
 def simplify_sankey_stats(response: Any) -> list[dict[str, str]]:
 	if not isinstance(response, dict):
 		return []
@@ -293,11 +362,12 @@ def fetch_sequence(args: argparse.Namespace) -> dict[str, Any]:
 	post_headers = dict(authed_headers)
 	post_headers["Content-Type"] = "application/json"
 
-	hwid = args.hwid
+	hwid, hwid_source = discover_hwid(args, authed_headers)
 
 	results: dict[str, Any] = {
 		"meta": {
 			"hwid": hwid,
+			"hwid_source": hwid_source,
 			"exported_at": datetime.now(timezone.utc).isoformat(),
 		},
 	}
