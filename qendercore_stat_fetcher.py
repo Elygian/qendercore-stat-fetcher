@@ -388,6 +388,7 @@ def fetch_sequence(args: argparse.Namespace) -> dict[str, Any]:
 			"duration": "P1D",
 			"resolution": "total",
 			"tz": "local",
+				"start": args.start_date,
 		},
 	)
 	results["pie_chart_stats"] = {
@@ -411,6 +412,7 @@ def fetch_sequence(args: argparse.Namespace) -> dict[str, Any]:
 			],
 			"resolution": "PT15M",
 			"tz": "local",
+				"start": args.start_date,
 		},
 	)
 	results["graph_stats"] = {

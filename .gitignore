@@ -27,4 +27,8 @@ coverage.xml
 # Local secrets and generated outputs
 .env
 qendercore_stats_export.json
+qendercore_pie_chart_debug.json
 qendercore-open-collection/environments/*
+
+# Testing scripts
+*debug.py
