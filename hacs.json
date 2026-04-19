@@ -1,0 +1,8 @@
+{
+    "content_in_root": false,
+    "domains": [
+        "qendercore"
+    ],
+    "homeassistant": "2025.1.0",
+    "render_readme": true
+}
