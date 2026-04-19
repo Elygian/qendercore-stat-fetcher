@@ -40,6 +40,9 @@
             "meter_power": {
                 "name": "Meter Power"
             },
+            "grid_import_power": {
+                "name": "Grid Import Power"
+            },
             "battery_power": {
                 "name": "Battery Power"
             },
