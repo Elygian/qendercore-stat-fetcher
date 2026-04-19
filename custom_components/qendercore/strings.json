@@ -1,0 +1,54 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Connect to Qendercore",
+                "description": "Enter your Qendercore account credentials.",
+                "data": {
+                    "username": "Username",
+                    "password": "Password"
+                }
+            }
+        },
+        "error": {
+            "invalid_auth": "Authentication failed.",
+            "cannot_connect": "Unable to connect to Qendercore."
+        },
+        "abort": {
+            "already_configured": "This Qendercore account is already configured."
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "title": "Qendercore options",
+                "data": {
+                    "scan_interval": "Polling interval in seconds",
+                    "hardware_id": "Manual hardware ID override"
+                }
+            }
+        }
+    },
+    "entity": {
+        "sensor": {
+            "solar_production_power": {
+                "name": "Solar Production Power"
+            },
+            "consumption_power": {
+                "name": "Consumption Power"
+            },
+            "meter_power": {
+                "name": "Meter Power"
+            },
+            "battery_power": {
+                "name": "Battery Power"
+            },
+            "battery_soc": {
+                "name": "Battery State of Charge"
+            },
+            "grid_export_power": {
+                "name": "Grid Export Power"
+            }
+        }
+    }
+}
