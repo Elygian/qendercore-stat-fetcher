@@ -225,6 +225,7 @@ class QendercoreClient:
             "solar_production_power_w": row_by_id.get("inv.core.solar_prod_pwr_w"),
             "consumption_power_w": row_by_id.get("inv.core.consumption_pwr_w"),
             "meter_power_w": meter_power,
+            "grid_import_w": max(meter_power, 0),
             "inverter_battery_power_w": row_by_id.get("inv.core.battery_pwr_w"),
             "battery_soc_percent": row_by_id.get("inv.core.batt_soc_perc"),
             "grid_export_w": abs(min(meter_power, 0)),

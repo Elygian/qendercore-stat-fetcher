@@ -50,6 +50,15 @@ SENSORS: tuple[QendercoreSensorDescription, ...] = (
         state_class=SensorStateClass.MEASUREMENT,
     ),
     QendercoreSensorDescription(
+        key="grid_import_w",
+        value_key="grid_import_w",
+        translation_key="grid_import_power",
+        name="Grid Import Power",
+        native_unit_of_measurement=UnitOfPower.WATT,
+        device_class=SensorDeviceClass.POWER,
+        state_class=SensorStateClass.MEASUREMENT,
+    ),
+    QendercoreSensorDescription(
         key="inverter_battery_power_w",
         value_key="inverter_battery_power_w",
         translation_key="battery_power",
