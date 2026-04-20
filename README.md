@@ -4,7 +4,7 @@ Custom Home Assistant integration for Qendercore energy systems.
 
 This repository is structured primarily as a HACS custom integration. The Home Assistant payload lives under `custom_components/qendercore`. Useful API reference material (created and meant to be used with [Bruno](https://www.usebruno.com/)) now live under `helpers/api_collection`. A standalone script using the same API calls and payload transformation logic is available at `helpers/qendercore_dashboard_export.py`
 
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?repository=https%3A%2F%2Fgithub.com%2FElygian%2Fqendercore-stat-fetcher&owner=Elygian)
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?repository=https%3A%2F%2Fgithub.com%2FElygian%2Fqendercore-stat-fetcher)
 
 ## Repository layout
 
