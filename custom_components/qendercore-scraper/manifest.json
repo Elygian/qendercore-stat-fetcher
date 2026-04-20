@@ -1,5 +1,5 @@
 {
-    "domain": "qendercore",
+    "domain": "qendercore-scraper",
     "name": "Qendercore",
     "codeowners": [],
     "config_flow": true,

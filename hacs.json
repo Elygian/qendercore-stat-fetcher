@@ -1,7 +1,7 @@
 {
     "content_in_root": false,
     "domains": [
-        "qendercore"
+        "qendercore-scraper"
     ],
     "homeassistant": "2025.1.0",
     "render_readme": true
