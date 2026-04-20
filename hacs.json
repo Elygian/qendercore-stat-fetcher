@@ -1,5 +1,7 @@
 {
+    "name": "QenderCore Stat Scraper",
     "content_in_root": false,
+    "zip_release": false,
     "domains": [
         "qendercore"
     ],

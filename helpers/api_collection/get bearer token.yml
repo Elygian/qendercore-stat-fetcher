@@ -39,9 +39,9 @@ http:
     type: form-urlencoded
     data:
       - name: username
-        value: "{{username}}"
+        value: "{{QENDERCORE_USERNAME}}"
       - name: password
-        value: "{{password}}"
+        value: "{{QENDERCORE_PASSWORD}}"
 
 runtime:
   scripts:

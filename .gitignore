@@ -28,7 +28,7 @@ coverage.xml
 .env
 qendercore_stats_export.json
 qendercore_pie_chart_debug.json
-qendercore-open-collection/environments/*
+helpers/api_collection/environments/*
 
 # Testing scripts
 *debug.py

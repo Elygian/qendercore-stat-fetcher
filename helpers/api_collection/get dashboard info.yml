@@ -39,6 +39,13 @@ http:
     type: bearer
     token: "{{token}}"
 
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        let data = res.body;
+        bru.setEnvVar("hwid", data.ds.dshwdts.dr.fch.hwid);
+
 settings:
   encodeUrl: true
   timeout: 0
