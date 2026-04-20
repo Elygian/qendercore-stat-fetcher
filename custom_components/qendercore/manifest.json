@@ -3,7 +3,8 @@
     "name": "Qendercore",
     "codeowners": [],
     "config_flow": true,
-    "documentation": "https://github.com/example/qendercore",
+    "documentation": "https://github.com/Elygian/qendercore-stat-fetcher",
+    "issue_tracker": "https://github.com/Elygian/qendercore-stat-fetcher/issues",
     "integration_type": "device",
     "iot_class": "cloud_polling",
     "loggers": [
