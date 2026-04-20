@@ -97,7 +97,7 @@ class QendercoreOptionsFlow(OptionsFlow):
     """Handle Qendercore options."""
 
     def __init__(self, config_entry: ConfigEntry) -> None:
-        self.config_entry = config_entry
+        self._config_entry = config_entry
 
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> FlowResult:
         if user_input is not None:
@@ -111,13 +111,13 @@ class QendercoreOptionsFlow(OptionsFlow):
             )
 
         current_options = {
-            CONF_SCAN_INTERVAL: self.config_entry.options.get(
+            CONF_SCAN_INTERVAL: self._config_entry.options.get(
                 CONF_SCAN_INTERVAL,
-                self.config_entry.data.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL_SECONDS),
+                self._config_entry.data.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL_SECONDS),
             ),
-            CONF_HARDWARE_ID: self.config_entry.options.get(
+            CONF_HARDWARE_ID: self._config_entry.options.get(
                 CONF_HARDWARE_ID,
-                self.config_entry.data.get(CONF_HARDWARE_ID, ""),
+                self._config_entry.data.get(CONF_HARDWARE_ID, ""),
             ),
         }
         return self.async_show_form(
