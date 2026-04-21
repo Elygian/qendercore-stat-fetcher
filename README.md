@@ -6,6 +6,12 @@ This repository is structured primarily as a HACS custom integration. The Home A
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Elygian&repository=qendercore-stat-fetcher&category=integration)
 
+## Disclaimer
+
+This project is an independent, community-maintained Home Assistant integration and is not affiliated with, endorsed by, or sponsored by Soltaro, Qendercore, or their related companies.
+
+Any company names, product names, app names, and logos used in this repository remain the property of their respective owners and are included only to identify compatibility with the upstream platform.
+
 ## Repository layout
 
 - `custom_components/qendercore/`: the Home Assistant integration
