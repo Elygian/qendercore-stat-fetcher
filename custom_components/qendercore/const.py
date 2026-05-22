@@ -9,7 +9,7 @@ ACCOUNT_INFO_URL: Final = "https://api.qendercore.com:8000/v1/s/accountinfo"
 DASHBOARD_URL: Final = "https://api.qendercore.com:8000/v1/h/views/dashboard"
 DATASET_URL: Final = "https://api.qendercore.com:8000/v1/h/ds"
 
-DEFAULT_CLIENT_SEQ: Final = "W.3.2"
+DEFAULT_CLIENT_SEQ: Final = "W.4.0"
 DEFAULT_TIMEOUT: Final = 30
 DEFAULT_SCAN_INTERVAL_SECONDS: Final = 60
 MIN_SCAN_INTERVAL_SECONDS: Final = 30
