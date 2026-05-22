@@ -16,7 +16,7 @@ DEFAULT_DASHBOARD_OUTPUT = "qendercore_dashboard.json"
 DEFAULT_SANKEY_OUTPUT = "qendercore_sankey_stats.json"
 DEFAULT_SIMPLIFIED_OUTPUT = "qendercore_stats_simple.json"
 DEFAULT_TIMEOUT = 30
-DEFAULT_CLIENT_SEQ = "W.3.2"
+DEFAULT_CLIENT_SEQ = "W.4.0"
 
 
 def parse_args() -> argparse.Namespace:
