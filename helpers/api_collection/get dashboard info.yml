@@ -20,7 +20,7 @@ http:
     - name: Content-Type
       value: application/x-www-form-urlencoded
     - name: x-qc-client-seq
-      value: W.5.0
+      value: "{{x-qc-client-seq}}"
     - name: Origin
       value: https://www.qendercore.com
     - name: Sec-GPC
